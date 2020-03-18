@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1077036656655",
+    "firebase_url": "https://project1galorsiboni.firebaseio.com",
+    "project_id": "project1galorsiboni",
+    "storage_bucket": "project1galorsiboni.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1077036656655:android:dcf08373f3c763789e5b7a",
+        "android_client_info": {
+          "package_name": "com.example.project1_galor_siboni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1077036656655-1eokvjbchgb1e19l2sg2v7oh60mor9hv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKzcAGTSHH_zcGA4RUrBF3g9zfQiIElWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1077036656655-1eokvjbchgb1e19l2sg2v7oh60mor9hv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

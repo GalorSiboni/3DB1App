@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Project1_Galor_Siboni</string>
+    <string name="password_txt_main_page">Password</string>
+    <string name="username_hint">Email</string>
+    <string name="main_activity_log_in_lbl">Log in</string>
+    <string name="main_activity_reg_lbl">Register</string>
+    <string name="main_activity_log_in_text">Log In</string>
+    <string name="lbl_submit_register">Submit</string>
+    <string name="hint_enter_name">Enter: Name</string>
+    <string name="hint_enter_id">Enter: ID</string>
+    <string name="hint_enter_age">Enter: Age</string>
+    <string name="hint_enter_phone">Enter: Phone Number</string>
+    <string name="profile_view_info_lbl">Profile Information</string>
+
+</resources>
