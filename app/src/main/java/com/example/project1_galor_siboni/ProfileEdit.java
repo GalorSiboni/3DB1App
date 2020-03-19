@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -104,9 +105,15 @@ public class ProfileEdit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 s0 = Name.getText().toString();
-                s1 = Integer.parseInt(ID.getText().toString());
-                s2 = Integer.parseInt(Age.getText().toString());
-                s3 = Integer.parseInt(Phone.getText().toString());
+                if(TextUtils.isDigitsOnly(ID.getText().toString()))
+                    s1 = Integer.parseInt(ID.getText().toString());
+                else Toast.makeText( ProfileEdit.this, "ID can contain digits only!", Toast.LENGTH_SHORT ).show();
+                if(TextUtils.isDigitsOnly(Age.getText().toString()))
+                    s2 = Integer.parseInt(Age.getText().toString());
+                else Toast.makeText( ProfileEdit.this, "Age can contain digits only!", Toast.LENGTH_SHORT ).show();
+                if(TextUtils.isDigitsOnly(Phone.getText().toString()))
+                    s3 = Integer.parseInt(Phone.getText().toString());
+                else Toast.makeText( ProfileEdit.this, "Phone Number can contain digits only!", Toast.LENGTH_SHORT ).show();
                 if (!s0.trim().isEmpty() && s1 != 0 && s2 != 0 && s3 != 0) {
                     final User user = new User( s0, s1, s2, s3, imageUrl );
                     users.setValue( user );
