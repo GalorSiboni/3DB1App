@@ -81,7 +81,6 @@ public class ProfileEdit extends AppCompatActivity {
             public void onClick(View v) {
                 SelectImage();
                 btnUpload.setVisibility( View.VISIBLE );
-                btnSelect.setVisibility( View.GONE );
                 editPhotoFlag = true;
             }
         });
