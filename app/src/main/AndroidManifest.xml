@@ -9,9 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileView"></activity>
+        <activity android:name=".MongoProfileView"></activity>
+        <activity android:name=".MongoProfileEdit" />
+        <activity android:name=".SqlLogin" />
+        <activity android:name=".MongoLogin" />
+        <activity android:name=".FirebaseMain" />
+        <activity android:name=".ProfileView" />
         <activity android:name=".ProfileEdit" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".platform_chooser">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

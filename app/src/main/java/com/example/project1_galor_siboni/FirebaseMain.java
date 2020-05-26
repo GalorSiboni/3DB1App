@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity {
+public class FirebaseMain extends AppCompatActivity {
         private EditText editEmail, editPass;
+        private TextView loginText;
 
         //Firebase
         private FirebaseAuth auth;
@@ -31,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
             regBTN = findViewById( R.id.regBTN );
             editEmail = findViewById( R.id.editUser );
             editPass = findViewById( R.id.editPassword );
+            loginText = findViewById( R.id.logInText );
 
+            loginText.setText( "Login via FireBase");
 
             //Firebase
             auth = FirebaseAuth.getInstance();
@@ -56,15 +59,15 @@ public class MainActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    Toast.makeText(MainActivity.this, "login ok.",
+                                    Toast.makeText( FirebaseMain.this, "login ok.",
                                             Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent( MainActivity.this, ProfileView.class );
+                                    Intent intent = new Intent( FirebaseMain.this, ProfileView.class );
                                     intent.putExtra( "uid", task.getResult().getUser().getUid());
                                     startActivity( intent );
                                     finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(MainActivity.this, "login failed.",
+                                    Toast.makeText( FirebaseMain.this, "login failed.",
                                             Toast.LENGTH_SHORT).show();
 
                                 }
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void regFunc(View view){
                 if (editEmail.getText().toString().isEmpty() || editPass.getText().toString().isEmpty())
-                    Toast.makeText(MainActivity.this,"Please fill the lines.",
+                    Toast.makeText( FirebaseMain.this,"Please fill the lines.",
                             Toast.LENGTH_SHORT).show();
 
                 else
@@ -87,15 +90,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
                         // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(MainActivity.this,"REG ok.",
+                            Toast.makeText( FirebaseMain.this,"REG ok.",
                             Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent( MainActivity.this, ProfileEdit.class );
+                            Intent intent = new Intent( FirebaseMain.this, ProfileEdit.class );
                             intent.putExtra( "uid", task.getResult().getUser().getUid());
                             startActivity( intent );
                             finish();
                         }else{
                         // If sign in fails, display a message to the user.
-                        Toast.makeText(MainActivity.this,"REG failed.",
+                        Toast.makeText( FirebaseMain.this,"REG failed.",
                         Toast.LENGTH_SHORT).show();
                         }
                     }
