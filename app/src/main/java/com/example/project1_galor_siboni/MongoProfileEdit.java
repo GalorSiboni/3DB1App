@@ -82,11 +82,12 @@ public class MongoProfileEdit extends AppCompatActivity {
 
     public void sendUser(User user) throws ExecutionException, InterruptedException {
         RetrieveFeedTask r = new RetrieveFeedTask();
+        boolean pushType = taskExecute( r, "profileEdit" );
         boolean name = taskExecute( r, user.getName() );
         boolean id = taskExecute( r, "" + user.getID() );
         boolean age = taskExecute( r, "" + user.getAge() );
         boolean phone = taskExecute( r, "" + user.getPhone() );
-        if(name == false || id == false || age == false || phone == false){
+        if(pushType == false || name == false || id == false || age == false || phone == false){
             Toast.makeText( MongoProfileEdit.this, "failed to save profile",
                     Toast.LENGTH_SHORT ).show();
         }
@@ -102,9 +103,10 @@ public class MongoProfileEdit extends AppCompatActivity {
 
     private void createUser(String userName, String password) throws ExecutionException, InterruptedException {
         RetrieveFeedTask r = new RetrieveFeedTask();
+        boolean pushType = taskExecute( r, "createUser" );
         boolean username = taskExecute( r,  userName);
         boolean pass = taskExecute( r,  password);
-        if(username == false || pass == false){
+        if(pushType == false || username == false || pass == false){
             Toast.makeText( MongoProfileEdit.this, "failed to create user",
                     Toast.LENGTH_SHORT ).show();
         }
