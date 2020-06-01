@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MongoLogin extends AppCompatActivity {
 
@@ -28,20 +29,35 @@ public class MongoLogin extends AppCompatActivity {
         registerBTN.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent( MongoLogin.this, MongoProfileEdit.class );
-                intent.putExtra( "mongoUserName", editUserName.getText().toString() );
-                intent.putExtra( "mongoPassword", editPass.getText().toString() );
-                startActivity( intent );
-                finish();
+
+                String userName = editUserName.getText().toString();
+                String password = editPass.getText().toString();
+                if (!userName.isEmpty() && !password.isEmpty() ) {
+                    intent.putExtra( "mongoUserName", userName );
+                    intent.putExtra( "mongoPassword", password );
+                    startActivity( intent );
+                    finish();
+                }
+                else
+                    Toast.makeText( MongoLogin.this, "Username and Password cannot be empty!", Toast.LENGTH_SHORT ).show();
+
             }
         } );
         loginBTN.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent( MongoLogin.this, MongoProfileView.class );
-                intent.putExtra( "mongoUserName", editUserName.getText().toString() );
-                intent.putExtra( "mongoPassword", editPass.getText().toString() );
+                String userName = editUserName.getText().toString();
+                String password = editPass.getText().toString();
+                if (!userName.isEmpty() && !password.isEmpty() ) {
+                intent.putExtra( "mongoUserName", userName );
+                intent.putExtra( "mongoPassword", password );
                 startActivity( intent );
                 finish();
             }
+                else
+                        Toast.makeText( MongoLogin.this, "Username and Password cannot be empty!", Toast.LENGTH_SHORT ).show();
+
+        }
         } );
     }
 

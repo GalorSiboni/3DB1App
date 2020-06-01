@@ -108,7 +108,7 @@ public class MongoProfileEdit extends AppCompatActivity {
         }
         else{
             Toast.makeText( MongoProfileEdit.this, "Register Complete!", Toast.LENGTH_SHORT ).show();
-            Intent intent = new Intent( MongoProfileEdit.this, ProfileView.class );
+            Intent intent = new Intent( MongoProfileEdit.this, MongoProfileView.class );
             intent.putExtra( "mongoUserName", userName );
             intent.putExtra( "mongoPassword", password );
             startActivity( intent );
