@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
 import java.util.concurrent.ExecutionException;
 
 public class MongoProfileEdit extends AppCompatActivity {
@@ -17,7 +23,7 @@ public class MongoProfileEdit extends AppCompatActivity {
     //editText views
     private EditText Name, ID, Age, Phone;
     private String userName, password;
-
+    boolean pushSuccess;
 
     private String s0 = "";
     private int s1 = 0, s2 = 0, s3 = 0;
@@ -27,18 +33,11 @@ public class MongoProfileEdit extends AppCompatActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_profile_edit );
 
+        initViews();
 
         Intent intent = getIntent();
         userName = intent.getStringExtra( "mongoUserName" );
         password = intent.getStringExtra( "mongoPassword" );
-
-        try {
-            createUser( userName, password );
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
         btnSubmit.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
@@ -64,7 +63,7 @@ public class MongoProfileEdit extends AppCompatActivity {
                     if (!s0.trim().isEmpty() && s1 != 0 && s2 != 0 && s3 != 0) {
                         final User user = new User( s0, s1, s2, s3, null );
                         try {
-                            sendUser( user );
+                            createProfile( user, userName, password );
                         } catch (ExecutionException e) {
                             e.printStackTrace();
                         } catch (InterruptedException e) {
@@ -73,22 +72,38 @@ public class MongoProfileEdit extends AppCompatActivity {
                     }
 
                     else{
-                        Toast.makeText(MongoProfileEdit.this,"Please fill all the slots",Toast.LENGTH_SHORT).show();
+                        Toast.makeText( MongoProfileEdit.this,"Please fill all the slots",Toast.LENGTH_SHORT).show();
                     }
                 }});
             }
 
 
 
-    public void sendUser(User user) throws ExecutionException, InterruptedException {
-        RetrieveFeedTask r = new RetrieveFeedTask();
-        boolean pushType = taskExecute( r, "profileEdit" );
-        boolean name = taskExecute( r, user.getName() );
-        boolean id = taskExecute( r, "" + user.getID() );
-        boolean age = taskExecute( r, "" + user.getAge() );
-        boolean phone = taskExecute( r, "" + user.getPhone() );
-        if(pushType == false || name == false || id == false || age == false || phone == false){
-            Toast.makeText( MongoProfileEdit.this, "failed to save profile",
+    public void createProfile(User user, String userName, String password) throws ExecutionException, InterruptedException {
+        JSONObject type = new JSONObject();
+        JSONObject userOBJ = new JSONObject();
+        JSONObject profileOBJ = new JSONObject();
+        JSONArray profileJsonArray = new JSONArray();
+        try {
+            type.put("type", "createProfile");
+            userOBJ.put("userName", userName);
+            userOBJ.put("password", password);
+            profileOBJ.put("name", user.getName());
+            profileOBJ.put("id", user.getID());
+            profileOBJ.put("age", user.getAge());
+            profileOBJ.put("phone", user.getPhone());
+
+            profileJsonArray.put( type );
+            profileJsonArray.put( userOBJ );
+            profileJsonArray.put( profileOBJ );
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        pushSuccess = taskExecute(profileJsonArray.toString());
+        if(pushSuccess == false){
+            Toast.makeText( MongoProfileEdit.this, "failed to send profile",
                     Toast.LENGTH_SHORT ).show();
         }
         else{
@@ -99,21 +114,11 @@ public class MongoProfileEdit extends AppCompatActivity {
             startActivity( intent );
             finish();
         }
+
     }
 
-    private void createUser(String userName, String password) throws ExecutionException, InterruptedException {
+    private boolean taskExecute( String str) throws ExecutionException, InterruptedException {
         RetrieveFeedTask r = new RetrieveFeedTask();
-        boolean pushType = taskExecute( r, "createUser" );
-        boolean username = taskExecute( r,  userName);
-        boolean pass = taskExecute( r,  password);
-        if(pushType == false || username == false || pass == false){
-            Toast.makeText( MongoProfileEdit.this, "failed to create user",
-                    Toast.LENGTH_SHORT ).show();
-        }
-    }
-
-
-    private boolean taskExecute(RetrieveFeedTask r, String str) throws ExecutionException, InterruptedException {
         r.execute( str );
         if (r.get() == "falsh") {
             Toast.makeText( MongoProfileEdit.this, "failed to push " + str,

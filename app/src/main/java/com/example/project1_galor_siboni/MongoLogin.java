@@ -34,6 +34,15 @@ public class MongoLogin extends AppCompatActivity {
                 finish();
             }
         } );
+        loginBTN.setOnClickListener( new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent( MongoLogin.this, MongoProfileView.class );
+                intent.putExtra( "mongoUserName", editUserName.getText().toString() );
+                intent.putExtra( "mongoPassword", editPass.getText().toString() );
+                startActivity( intent );
+                finish();
+            }
+        } );
     }
 
 
@@ -41,8 +50,8 @@ public class MongoLogin extends AppCompatActivity {
         // initialise views
         editUserName = findViewById( R.id.editUser );
         editPass = findViewById( R.id.editPassword );
-        registerBTN = findViewById( R.id.bottom );
-        loginBTN = findViewById( R.id.bottom );
+        registerBTN = findViewById( R.id.regBTN );
+        loginBTN = findViewById( R.id.logBTN );
         loginText = findViewById( R.id.logInText );
     }
 }

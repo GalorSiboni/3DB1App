@@ -26,7 +26,6 @@ public class RetrieveFeedTask extends AsyncTask<String , Void, String> {
             BufferedReader inFromServer =
                     new BufferedReader( new
                             InputStreamReader( clientSocket.getInputStream() ) );
-            Log.d( "writeBytes",message );
             outToServer.writeBytes( message + "\n");
             Log.d( "outToServer",message );
 
