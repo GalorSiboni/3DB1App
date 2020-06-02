@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MongoProfileView"></activity>
+        <activity android:name=".SqlProfileView"></activity>
+        <activity android:name=".SqlProfileEdit" />
+        <activity android:name=".MongoProfileView" />
         <activity android:name=".MongoProfileEdit" />
         <activity android:name=".SqlLogin" />
         <activity android:name=".MongoLogin" />

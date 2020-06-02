@@ -86,16 +86,20 @@ public class MongoProfileEdit extends AppCompatActivity {
         JSONArray profileJsonArray = new JSONArray();
         try {
             type.put("type", "createProfile");
+
             userOBJ.put("userName", userName);
             userOBJ.put("password", password);
+
             profileOBJ.put("name", user.getName());
             profileOBJ.put("id", user.getID());
             profileOBJ.put("age", user.getAge());
             profileOBJ.put("phone", user.getPhone());
 
+
             profileJsonArray.put( type );
             profileJsonArray.put( userOBJ );
             profileJsonArray.put( profileOBJ );
+
 
         } catch (JSONException e) {
             e.printStackTrace();
