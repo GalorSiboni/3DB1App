@@ -36,7 +36,6 @@ public class MongoLogin extends AppCompatActivity {
                     intent.putExtra( "mongoUserName", userName );
                     intent.putExtra( "mongoPassword", password );
                     startActivity( intent );
-                    finish();
                 }
                 else
                     Toast.makeText( MongoLogin.this, "Username and Password cannot be empty!", Toast.LENGTH_SHORT ).show();
@@ -52,7 +51,6 @@ public class MongoLogin extends AppCompatActivity {
                 intent.putExtra( "mongoUserName", userName );
                 intent.putExtra( "mongoPassword", password );
                 startActivity( intent );
-                finish();
             }
                 else
                         Toast.makeText( MongoLogin.this, "Username and Password cannot be empty!", Toast.LENGTH_SHORT ).show();

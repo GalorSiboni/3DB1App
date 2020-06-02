@@ -64,7 +64,6 @@ public class FirebaseMain extends AppCompatActivity {
                                     Intent intent = new Intent( FirebaseMain.this, ProfileView.class );
                                     intent.putExtra( "uid", task.getResult().getUser().getUid());
                                     startActivity( intent );
-                                    finish();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText( FirebaseMain.this, "login failed.",
@@ -95,7 +94,6 @@ public class FirebaseMain extends AppCompatActivity {
                             Intent intent = new Intent( FirebaseMain.this, ProfileEdit.class );
                             intent.putExtra( "uid", task.getResult().getUser().getUid());
                             startActivity( intent );
-                            finish();
                         }else{
                         // If sign in fails, display a message to the user.
                         Toast.makeText( FirebaseMain.this,"REG failed.",

@@ -29,7 +29,6 @@ public class SqlLogin extends AppCompatActivity {
         registerBTN.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent( SqlLogin.this, SqlProfileEdit.class );
-
                 String userName = editUserName.getText().toString();
                 String password = editPass.getText().toString();
                 if (!userName.isEmpty() && !password.isEmpty() ) {
@@ -46,8 +45,6 @@ public class SqlLogin extends AppCompatActivity {
         loginBTN.setOnClickListener( new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent( SqlLogin.this, SqlProfileView.class );
-                startActivity( intent );
-                finish();
                 String userName = editUserName.getText().toString();
                 String password = editPass.getText().toString();
                 if (!userName.isEmpty() && !password.isEmpty() ) {

@@ -78,5 +78,11 @@ public class SqlProfileView extends AppCompatActivity {
         else return result;
 
     }
+    @Override
+    public void onBackPressed() {
+        Intent loginIntent = new Intent(SqlProfileView.this, SqlLogin.class);
+        startActivity(loginIntent);
+        finish();
+    }
 
 }
